@@ -1,0 +1,22 @@
+{
+  "name": "hackerthon_ancestory_mapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper/issues"
+  },
+  "homepage": "https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper#readme"
+}
