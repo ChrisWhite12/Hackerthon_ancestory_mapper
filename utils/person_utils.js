@@ -5,6 +5,11 @@ const getPersonById = function(req) {
     return PersonModel.findById(id)
 }
 
+const getAllPeople = function(req) {
+    return PersonModel.find()
+}
+
 module.exports = {
-    getPersonById
+    getPersonById,
+    getAllPeople
 }

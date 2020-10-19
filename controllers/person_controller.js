@@ -1,25 +1,28 @@
 const PersonModel = require('../models/people');
-const { getPersonById } = require('../utils/person_utils')
+const { getPersonById, getAllPeople } = require('../utils/person_utils')
+
+const get_people = async(req, res) => {
+    // rendering page with all persons
+    try {
+        const people = await getAllPeople(req)
+        console.log(people)
+        res.status(200).render('people/people', { people })
+    } catch (error) {
+        res.status(500).send({
+            error
+        })
+    }
+}
 
 const get_persons = (req,res) => {
-    // rendering page with all persons
+    // rendering create person page
     res.render('people/person')
 }
 
-// getPostById(req).exec((err, post) => {
-//     if (err) {
-//     res.status(400);
-//     return res.send("Post not found");
-//     }
-//     res.send(post);
-// });
-
 const get_person = async (req, res) => {
-    // console.log("req.params.id: " + req.params.id)
-
     try {
         const person = await getPersonById(req)
-        console.log(person)
+        // console.log(person)
         res.status(200).render('people/show', person )
     } catch (error) {
         res.status(500).send({
@@ -57,6 +60,7 @@ const change_person = (req,res) => {
 }
 
 module.exports = {
+    get_people,
     get_persons,
     get_person,
     create_person,
