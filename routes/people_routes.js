@@ -12,11 +12,11 @@ const {
 // Returns all _persons
 router.get('/', get_persons)
 
-// Returns one _person with given id
-router.get('/:id', get_person)
-
 // Creates a new _person
 router.post('/', create_person)
+
+// Returns one _person with given id
+router.get('/:id', get_person)
 
 // Deletes a _person with given id
 router.delete('/:id', remove_person)

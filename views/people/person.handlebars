@@ -1,0 +1,53 @@
+<h1> Person Page </h1>
+
+{{#if error}}
+<p>Error: {{error}}</p>
+{{/if}}
+
+<h2>Person Information</h2>
+
+<form method="post" action="/people">
+    <div>
+        <label>First Name</label>
+        <input type="text" name="firstName" />
+    </div>
+    <div>
+        <label>Middle Name</label>
+        <input type="text" name="middleName" />
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input type="text" name="lastName" />
+    </div>
+
+    {{!-- <h2>Family Information</h2>
+
+    <div>
+        <label>Children</label>
+        <input type="text" name="children" />
+    </div>
+    <div>
+        <label>Partners</label>
+        <input type="text" name="partners" />
+    </div>
+
+    <h2>Events</h2>
+
+    <div>
+        <label>Event</label>
+        <input type="text" name="event" />
+    </div>
+    <div>
+        <label>Date</label>
+        <input type="date" name="eventDate" />
+    </div>
+    <div>
+        <label>Location</label>
+        <input type="text" name="location" />
+    </div> --}}
+
+    {{!-- Submit Button--}}
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
