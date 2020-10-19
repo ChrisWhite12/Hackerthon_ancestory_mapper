@@ -18,8 +18,8 @@ const pagesController = require('./routes/pages_routes')
 const peopleController = require('./routes/people_routes')
 const authController = require('./routes/auth_routes')
 
-// app.use( express.urlencoded( {extended: false }) )
-// app.use( express.json() )
+app.use( express.urlencoded( {extended: true }) )
+app.use( express.json() )
 
 app.engine('handlebars', exphbs({
     handlebars: allowInsecurePrototypeAccess(Handlebars)
@@ -40,10 +40,10 @@ mongoose.connect(dbConn, {
         }
     });
 
-    // Install middleware
-    app.use(cors());
-    app.use(bodyParser.json());
-    app.use(session({
+// Install middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(session({
     // resave and saveUninitialized set to false for deprecation warnings
     secret: "Express is awesome",
     resave: false,

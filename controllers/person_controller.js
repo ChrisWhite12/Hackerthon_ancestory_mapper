@@ -1,17 +1,28 @@
 const PersonModel = require('../models/people');
 const { getPersonById, getAllPeople } = require('../utils/person_utils')
 
-const get_people = async(req, res) => {
+const get_people = async (req, res) => {
     // rendering page with all persons
     try {
         const people = await getAllPeople(req)
-        console.log(people)
+        // console.log(people)
         res.status(200).render('people/people', { people })
     } catch (error) {
+        console.log(error)
         res.status(500).send({
             error
         })
     }
+
+    // getAllPeople(req).exec((err, people) => {
+    //     if (err) {
+    //         res.status(400)
+    //         return res.send("People not found")
+    //     } else {
+    //         res.render('people/show', people)
+    //     }
+    // })
+    // res.send("here")
 }
 
 const get_persons = (req,res) => {
@@ -42,10 +53,10 @@ const get_person = async (req, res) => {
 }
 
 const create_person = async (req,res) => {
-    // console.log(req.body)
+    console.log("req.body", req.body)
     // Save the req.body data to variables
-    const { firstName, middleName, lastName } = req.body
-    let person = await PersonModel.create({ firstName, middleName, lastName })
+    const { firstName, middleName, lastName, DOB, birthPlace } = req.body
+    let person = await PersonModel.create({ firstName, middleName, lastName, DOB, birthPlace })
     // console.log(person)
     
     res.redirect(`people/${person._id}`)

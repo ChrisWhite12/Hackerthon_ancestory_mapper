@@ -10,14 +10,14 @@ const {
     change_person
 } = require('../controllers/person_controller')
 
-// Returns all _persons
-router.get('/', get_people)
-
-// Returns new person form
-router.get('/create', get_persons)
+// Returns create person form
+router.get('/', get_persons)
 
 // Creates a new _person
-router.post('/create', create_person)
+router.post('/', create_person)
+
+// Returns all people
+router.get('/all', get_people)
 
 // Returns one _person with given id
 router.get('/:id', get_person)
