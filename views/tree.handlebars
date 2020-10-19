@@ -2,18 +2,12 @@
     <h1>Tree Page</h1>
     <div id="tree-area">
         <ul>
-            <li>Person 1</li>
-            <li>Person 2</li>
-            <li>Person 3
-                <ul>
-                    <li>Person 3-1</li>
-                    <li>Person 3-2
-                        <ul>
-                            <li>Person 3-2-1</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+            {{tree_template}}
         </ul>
     </div>
 </div>
+
+<script>
+    let treeA = document.getElementById('tree-area')
+    console.log(treeA)
+</script>

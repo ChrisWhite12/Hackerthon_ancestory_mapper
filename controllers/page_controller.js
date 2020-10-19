@@ -25,7 +25,7 @@ const display_tree = (req,res) => {
             'Fname': 'Mary',
             'Lname': 'Smith',
             'Parents': [1],
-            'Children': [],
+            'Children': [5,6],
             'Partners': [],
             'Events': []
         },
@@ -37,14 +37,43 @@ const display_tree = (req,res) => {
             'Children': [],
             'Partners': [],
             'Events': []
-        }
+        },
+        {
+            'id':5,
+            'Fname': 'Emily',
+            'Lname': 'Green',
+            'Parents': [3],
+            'Children': [],
+            'Partners': [],
+            'Events': []
+        },
+        {
+            'id':6,
+            'Fname': 'Mark',
+            'Lname': 'Green',
+            'Parents': [3],
+            'Children': [],
+            'Partners': [],
+            'Events': []
+        },
     ]
+
     treeitems = 0;
+    tree_struc = [`<li>${test_data[0]["Fname"]}</li>`]
     test_data.forEach(el => {
         
+        if(el["Children"].length >= 1){
+            tree_struc.push('<ul>')
+            for (let child = 0; child < el["Children"].length; child++) {
+                let find_child = test_data.find( el2 => el2["id"] == el["Children"][child])
+                tree_struc.push(`<li>${find_child["Fname"]}</li>`)
+            }
+            tree_struc.push('</ul>')
+        }
     })
-
-    res.render('tree')
+    tree_template = tree_struc.join('')
+    console.log(tree_template)
+    res.render('tree',{tree_template})
 
     // treeitems = 0;
     // test_data.forEach(el => {
