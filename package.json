@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,18 @@
   "bugs": {
     "url": "https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper/issues"
   },
-  "homepage": "https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper#readme"
+  "homepage": "https://github.com/ChrisWhite12/Hackerthon_ancestory_mapper#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.10.9",
+    "mongoose-bcrypt": "^1.9.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
 }
