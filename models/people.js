@@ -13,7 +13,15 @@ const Person = new Schema({
     lastName: {
         type: String,
         required: true
-    }
+    },
+    DOB: {
+        type: Date,
+        required: true
+    },
+    birthPlace: {
+        type: String,
+        required: true
+    },
 });
 
 module.exports = mongoose.model('Person', Person);

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {
+    get_people,
     get_persons,
     get_person,
     create_person,
@@ -9,11 +10,14 @@ const {
     change_person
 } = require('../controllers/person_controller')
 
-// Returns all _persons
+// Returns create person form
 router.get('/', get_persons)
 
 // Creates a new _person
 router.post('/', create_person)
+
+// Returns all people
+router.get('/all', get_people)
 
 // Returns one _person with given id
 router.get('/:id', get_person)
