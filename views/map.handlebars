@@ -1,7 +1,41 @@
 <div class="main-sec">
     <h1>Map Page</h1>
-    <div id="map" style="height: 400px; width: 400px"></div>
-
+    <div id="map" style="height: 70vh; width: 80vw"></div>
+    <div>
+        <input type="button" id="play_btn" value="Play" style="width: 100px;">
+        <input type="range" id="year_select" style="width: 50vw;" min="1800" max="2020">
+    </div>
 </div>
+
+<script>
+    const play_btn = document.getElementById("play_btn")
+    const year_select = document.getElementById("year_select")
+
+    function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -25.344, lng: 131.036 };
+
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: uluru,
+        });
+    }
+
+    play_btn.addEventListener('click', el => {
+        console.log('click')
+        if(play_btn["value"] == "Pause"){
+            play_btn["value"] = "Play"
+        }
+        else{
+            play_btn["value"] = "Pause"
+            console.log(year_select["value"])
+        }
+    })
+
+    year_select.addEventListener('change', () => {
+        console.log(year_select["value"])
+    })
+</script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9k8U_KzwSGC4DbQWJKoH51YMtvKZrR6U&callback=initMap&libraries=&v=weekly" ></script>

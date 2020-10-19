@@ -10,7 +10,7 @@ const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
-const exphbs  = require('express-handlebars')
+// const exphbs  = require('express-handlebars')
 
 
 const app = express()
@@ -69,8 +69,8 @@ app.use(passport.session());
 //     next()
 // })
 
-app.engine('handlebars', exphbs())
-app.set('view engine', 'handlebars')
+// app.engine('handlebars', exphbs())
+// app.set('view engine', 'handlebars')
 
 
 app.get('/', (req, res) => {
