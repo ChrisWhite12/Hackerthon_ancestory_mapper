@@ -9,7 +9,17 @@ const getAllPeople = function(req) {
     return PersonModel.find()
 }
 
+const deletePerson = function(req) {
+    const personId = req.params.id
+    return PersonModel.deleteOne({ "_id": personId })
+}
+
+const editPerson = function(req) {
+    
+}
+
 module.exports = {
     getPersonById,
-    getAllPeople
+    getAllPeople,
+    deletePerson
 }

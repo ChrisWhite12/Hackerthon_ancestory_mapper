@@ -1,5 +1,5 @@
 const PersonModel = require('../models/people');
-const { getPersonById, getAllPeople } = require('../utils/person_utils')
+const { getPersonById, getAllPeople, deletePerson } = require('../utils/person_utils')
 
 const get_people = async (req, res) => {
     // rendering page with all persons
@@ -62,8 +62,16 @@ const create_person = async (req,res) => {
     res.redirect(`people/${person._id}`)
 }
 
-const remove_person = (req,res) => {
-    res.send('person removed')
+const remove_person = async (req,res) => {
+    try {
+        const response = await deletePerson(req)
+        res.status(200).send("Person Deleted")
+    
+      } catch (error) {
+        res.status(500).send({
+          error
+        })
+    }
 }
 
 const change_person = (req,res) => {
