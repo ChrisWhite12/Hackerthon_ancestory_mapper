@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 // const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');
+// handlebars
+const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 const exphbs  = require('express-handlebars')
 
@@ -19,6 +23,11 @@ const authController = require('./routes/auth_routes')
 
 // app.use( express.urlencoded( {extended: false }) )
 // app.use( express.json() )
+
+app.engine('handlebars', exphbs({
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+}));
+app.set('view engine', 'handlebars');
 
 mongoose.connect(dbConn, {
         useNewUrlParser: true,
