@@ -1,3 +1,4 @@
+const express = require('express')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -5,7 +6,9 @@ const session = require('express-session');
 // const MongoStore = require("connect-mongo")(session)
 const passport = require('passport');
 
-const express = require('express')
+const exphbs  = require('express-handlebars')
+
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -14,8 +17,8 @@ const pagesController = require('./routes/pages_routes')
 const peopleController = require('./routes/people_routes')
 const authController = require('./routes/auth_routes')
 
-app.use( express.urlencoded( {extended: false }) )
-app.use( express.json() )
+// app.use( express.urlencoded( {extended: false }) )
+// app.use( express.json() )
 
 mongoose.connect(dbConn, {
         useNewUrlParser: true,
@@ -57,6 +60,10 @@ app.use(passport.session());
 //     next()
 // })
 
+app.engine('handlebars', exphbs())
+app.set('view engine', 'handlebars')
+
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
@@ -68,3 +75,5 @@ app.use('/user', authController)
 app.listen(port, () => {
     console.log('listening on port:' + port)
 })
+
+
