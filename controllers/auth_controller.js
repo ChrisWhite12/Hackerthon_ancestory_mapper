@@ -5,7 +5,7 @@ const registerNew = (req,res) => {
     res.render('auth/register')
 }
 
-const registerCreate = (req,res) => {
+const registerCreate = (req, res) => {
     // res.json(req.body)
     // const {email, password} = req.body
     // const user = await UserModel.create({
@@ -21,13 +21,13 @@ const registerCreate = (req,res) => {
                 next(err)
             }
             else{
-                res.redirect('/dashboard')
+                res.redirect('/people/')
             }
 
         })
     }
 
-    const {email,password} = req.body
+    const { email, password } = req.body
     UserModel.create({
         email,
         password
@@ -63,7 +63,7 @@ const loginCreate = (req,res, next) => {
     //     }
     // }
     const loginFunc = passport.authenticate('local', {
-       successRedirect: "/dashboard",
+       successRedirect: "/people",
        failureRedirect: "/user/login"
     })
     loginFunc(req, res, next)

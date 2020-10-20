@@ -14,9 +14,9 @@ const app = express()
 const port = process.env.PORT || 3000
 
 const dbConn = 'mongodb://localhost/ancestry_app'
-const pagesController = require('./routes/pages_routes')
-const peopleController = require('./routes/people_routes')
-const authController = require('./routes/auth_routes')
+const pageRoutes = require('./routes/pages_routes')
+const peopleRoutes = require('./routes/people_routes')
+const authRoutes = require('./routes/auth_routes')
 
 app.use( express.urlencoded( {extended: true }) )
 app.use( express.json() )
@@ -71,12 +71,12 @@ app.use(passport.session());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('home')
 })
 
-app.use('/pages', pagesController)
-app.use('/people', peopleController)
-app.use('/user', authController)
+app.use('/pages', pageRoutes)
+app.use('/people', peopleRoutes)
+app.use('/user', authRoutes)
 
 app.listen(port, () => {
     console.log('listening on port:' + port)

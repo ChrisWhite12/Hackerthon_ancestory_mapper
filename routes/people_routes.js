@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const { authorise } = require("../middleware/auth_mw");
 const {
     get_people,
     get_persons,
@@ -11,21 +11,24 @@ const {
 } = require('../controllers/person_controller')
 
 // Returns create person form
-router.get('/', get_persons)
+router.get('/', authorise, get_persons)
 
 // Creates a new _person
-router.post('/', create_person)
+router.post('/', authorise, create_person)
 
 // Returns all people
-router.get('/all', get_people)
+router.get('/all', authorise, get_people)
 
 // Returns one _person with given id
-router.get('/:id', get_person)
+router.get('/:id', authorise, get_person)
 
 // Deletes a _person with given id
-router.delete('/:id', remove_person)
+router.delete('/:id', authorise, remove_person)
+
+// // Returns the update person form
+// router.get('/:id/update', change_person)
 
 // Updates a _person with given id
-router.patch('/:id', change_person)
+router.patch('/:id/update', authorise, change_person)
 
 module.exports = router
