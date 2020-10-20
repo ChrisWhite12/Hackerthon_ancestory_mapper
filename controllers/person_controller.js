@@ -1,5 +1,12 @@
 const PersonModel = require('../models/people');
-const { getPersonById, getAllPeople, deletePerson, updatePerson } = require('../utils/person_utils')
+const { 
+    getPersonById, 
+    getAllPeople, 
+    deletePerson, 
+    updatePerson,
+    addChild,
+    addChildToPerson
+} = require('../utils/person_utils')
 
 const get_people = async (req, res) => {
     // rendering page with all persons
@@ -53,10 +60,10 @@ const get_person = async (req, res) => {
 }
 
 const create_person = async (req,res) => {
-    console.log("req.body", req.body)
+    // console.log("req.body", req.body)
     // Save the req.body data to variables
-    const { firstName, middleName, lastName, DOB, birthPlace } = req.body
-    let person = await PersonModel.create({ firstName, middleName, lastName, DOB, birthPlace })
+    const { firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry } = req.body
+    let person = await PersonModel.create({ firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry })
     // console.log(person)
     
     res.redirect(`people/${person._id}`)
@@ -101,6 +108,50 @@ const update_person = async (req,res) => {
     }
 }
 
+const add_child = (req, res) => {
+    // console.log(req.params.id)
+    const id = req.params.id
+    res.render('people/child', {id} )
+}
+
+const add_children = async (req, res) => {
+    try {
+        const { firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry } = req.body
+        let child = await PersonModel.create({ firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry })
+        const childId = child.id
+
+        const parent = await getPersonById(req)
+        const parentId = parent.id
+
+        // const updatedParent = await PersonModel.findByIdAndUpdate(parentId, {$push: {"children": [childId]}})
+        parent.children.push(childId);
+        parent.save();
+        console.log(parent)
+
+        res.status(200).render('people/show', child)
+        
+      } catch (error) {
+        res.status(500).send({
+          error
+        })
+    }
+}
+
+const add_event_form = async (req, res) => {
+    const id = req.params.id
+    res.render('people/event', {id})
+}
+
+const add_event = async (req, res) => {
+    console.log("req.body", req.body)
+    // Save the req.body data to variables
+    const { eventName, date, city, state, country } = req.body
+    
+    
+    // console.log(person)
+    
+}
+
 module.exports = {
     get_people,
     get_persons,
@@ -108,5 +159,9 @@ module.exports = {
     create_person,
     remove_person,
     update_person,
-    edit_person
+    edit_person,
+    add_child,
+    add_children,
+    add_event,
+    add_event_form
 }

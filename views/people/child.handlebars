@@ -1,12 +1,13 @@
-<h1> Person Page </h1>
+<h1> Add Child Page </h1>
 
 {{#if error}}
 <p>Error: {{error}}</p>
 {{/if}}
 
-<h2>Person Information</h2>
+<h2>Child Information</h2>
+<p>Parents ID: {{ id }}</p>
 
-<form method="post" action="/people">
+<form method="post" action="/people/{{id}}/add_child">
     <div>
         <label>First Name</label>
         <input type="text" name="firstName" />
@@ -35,17 +36,7 @@
         <label>Country</label>
         <input type="text" name="birthCountry" />
     </div>
-    {{!-- <h2>Family Information</h2>
-
-    <div>
-        <label>Children</label>
-        <input type="text" name="children" />
-    </div>
-    <div>
-        <label>Partners</label>
-        <input type="text" name="partners" />
-    </div>
-
+    {{!-- 
     <h2>Events</h2>
 
     <div>
@@ -59,7 +50,8 @@
     <div>
         <label>Location</label>
         <input type="text" name="location" />
-    </div> --}}
+    </div> 
+    --}}
 
     {{!-- Submit Button--}}
     <div>
