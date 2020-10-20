@@ -151,7 +151,7 @@ const add_event = async (req, res) => {
     person.events.push(event)
     person.save()
     console.log(person)
-    res.redirect('/')
+    res.redirect('/people/all')
     
 }
 
