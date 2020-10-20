@@ -5,51 +5,88 @@
         <input type="button" id="play_btn" value="Play" style="width: 100px;">
         <input type="range" id="year_select" style="width: 50vw;" min= "0"; max="1">
     </div>
+    <div id="info_box">
+      <p id="year_info"></p>
+      <p id="desc_info"></p>
+      <p id="locat_info"></p>
+    </div>
 </div>
 
 <script>
-    const play_btn = document.getElementById("play_btn")
-    const year_select = document.getElementById("year_select")
+  const play_btn = document.getElementById("play_btn")
+  const year_select = document.getElementById("year_select")
+  const year_info = document.getElementById("year_info")
+  const desc_info = document.getElementById("desc_info")
+  const locat_info = document.getElementById("locat_info")
 
-    function initMap() {
-        // The location of Uluru
-        const uluru = { lat: -25.344, lng: 131.036 };
+  //write function to get data from params
+  let test_data = {
+      "Fname": "chris",
+      "Lname": "white",
+      "events": [{"desc":"event 1", "date": 1991, "location": "Brisbane, Australia"},{"desc":"event 2", "date": 1998, "location": "Rome, Italy"},{"desc":"event 3", "date": 2000, "location": "New York, USA"},{"desc":"event 3", "date": 2020, "location": "London, UK"}]
+  }
 
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: uluru,
-        });
-    }
+  function initMap() {
+      // The location of Uluru
+      const uluru = { lat: -25.344, lng: 131.036 };
 
-    play_btn.addEventListener('click', el => {
-        console.log('click')
-        if(play_btn["value"] == "Pause"){
-            play_btn["value"] = "Play"
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+      });
+  }
+
+  play_btn.addEventListener('click', el => {
+      console.log('click')
+      if(play_btn["value"] == "Pause"){
+          play_btn["value"] = "Play"
+      }
+      else{
+          play_btn["value"] = "Pause"
+          console.log(year_select["value"])
+      }
+  })
+
+  //when the slider is changed
+  year_select.addEventListener('change', () => {
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: { lat: -25.344, lng: 131.036 },
+    });
+    const geocoder = new google.maps.Geocoder();
+    ind = year_select["value"]
+    year_info.innerHTML = test_data["events"][ind]["date"]
+    desc_info.innerHTML = test_data["events"][ind]["desc"]
+    locat_info.innerHTML = test_data["events"][ind]["location"]
+    //console.log(year_select["value"])
+    //console.log(test_data["events"][ind]["location"])
+    geocodeAddress(geocoder,map,test_data["events"][ind]["location"])
+  })
+
+  year_select["max"] = (test_data["events"].length - 1)
+  console.log(`events length ${test_data["events"].length}`)
+
+  function geocodeAddress(geocoder, resultsMap,location) {
+      console.log("calling geocoder")
+      console.log(resultsMap)
+      geocoder.geocode({ address: location}, (results, status) => {
+        if (status === "OK") {
+          resultsMap.setCenter(results[0].geometry.location);
+          new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert(
+            "Geocode was not successful for the following reason: " + status
+          );
         }
-        else{
-            play_btn["value"] = "Pause"
-            console.log(year_select["value"])
-        }
-    })
-
-    year_select.addEventListener('change', () => {
-        console.log(year_select["value"])
-    })
-
-    let test_data = {
-        "Fname": "chris",
-        "Lname": "white",
-        "events": [{"desc":"event 1", "date": 1991},{"desc":"event 2", "date": 1998},{"desc":"event 3", "date": 2000},{"desc":"event 3", "date": 2020}]
-    }
+      });
+  }
 
 
-    year_select["max"] = test_data["events"].length 
-    
-    test_data["events"].forEach(el => {
-        console.log(test_data["events"].length)
-        console.log(el["date"])
-    })
+
 
     
 </script>
