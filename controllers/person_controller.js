@@ -74,12 +74,25 @@ const remove_person = async (req,res) => {
     }
 }
 
-const change_person = async (req,res) => {
+const edit_person = async (req, res) => {
+    try {
+        const person = await getPersonById(req)
+        // console.log(person)
+        res.status(200).render('people/edit', person )
+    } catch (error) {
+        res.status(500).send({
+            error
+        })
+    }
+    // res.render('people/person')
+}
+
+const update_person = async (req,res) => {
     // res.send('person updated')
     try {
         const person = await updatePerson(req)
-        console.log(person)
-        res.status(200).send(Person)
+        // console.log(person)
+        res.status(200).render('people/show', person)
     
       } catch (error) {
         res.status(500).send({
@@ -94,5 +107,6 @@ module.exports = {
     get_person,
     create_person,
     remove_person,
-    change_person
+    update_person,
+    edit_person
 }

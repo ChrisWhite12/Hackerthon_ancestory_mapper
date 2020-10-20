@@ -7,7 +7,8 @@ const {
     get_person,
     create_person,
     remove_person,
-    change_person
+    update_person,
+    edit_person
 } = require('../controllers/person_controller')
 
 // Returns create person form
@@ -26,9 +27,9 @@ router.get('/:id', authorise, get_person)
 router.delete('/:id', authorise, remove_person)
 
 // // Returns the update person form
-// router.get('/:id/update', change_person)
+router.get('/:id/edit', authorise, edit_person)
 
 // Updates a _person with given id
-router.patch('/:id/update', authorise, change_person)
+router.put('/:id/edit', authorise, update_person)
 
 module.exports = router

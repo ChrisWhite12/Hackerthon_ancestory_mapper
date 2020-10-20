@@ -9,6 +9,8 @@ const passport = require('passport');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+//method override
+const methodOverride = require('method-override');
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -69,6 +71,8 @@ app.use(passport.session());
 // app.engine('handlebars', exphbs())
 // app.set('view engine', 'handlebars')
 
+// override with POST having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
     res.render('home')
