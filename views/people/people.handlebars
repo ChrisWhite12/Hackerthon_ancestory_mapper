@@ -1,10 +1,5 @@
 <h1>All People</h1>
-{{!-- 
-{{#each people}}
-<p><strong>Person: </strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</p>
-<p><strong>Date of Birth: </strong>{{ this.DOB }}</p>
-<p><strong>Place of Birth: </strong>{{ this.birthPlace }}</p>
-{{/each}} --}}
+
 <div class="columns">
     {{#each people}}
     <div class="column is-one-quarter">
@@ -22,6 +17,11 @@
                         <strong>Place of Birth:</strong> {{ birthCity}} {{ birthState }}, {{ birthCountry }}
                     </p>
                     <a href="/people/{{this.id}}/edit">Edit</a>
+                    <div>
+                        <input type="checkbox" class="check_person" data-per_id={{this.id}}>
+                        <label for="check_person">Select</label>
+                    </div>
+                    
                 </div>
                 <nav class="level is-mobile">
                 <div class="level-left">
@@ -38,11 +38,40 @@
                 </nav>
             </div>
             <div class="media-right">
-                <button class="delete"></button>
+                <button class="del_btn" data-per_id={{this.id}}>X</button>
             </div>
             </article>
         </div>
     </div>
     {{/each}}
 </div>
+<button id="map_btn">Go To Map</button>
 <a href="/user/logout">Logout</a>
+
+<script>
+    const map_btn = document.getElementById("map_btn")
+    const del_btn = document.getElementsByClassName("del_btn")
+    console.log(del_btn)
+
+    map_btn.addEventListener('click', () => {
+        let ids_out = []
+        let check_arr = document.querySelectorAll(".check_person")
+        console.log(check_arr)
+        check_arr.forEach(el => {
+            if(el["checked"] == true){
+                //console.log("checked == true")
+                ids_out.push(el["dataset"]["per_id"])
+            }
+        })
+        console.log(ids_out)
+    })
+
+    for(let ind = 0; ind < del_btn.length; ind ++){
+        del_btn[ind].addEventListener('click', (event) => {
+            console.log(event["target"]["dataset"]["per_id"])
+        })  
+    }
+
+
+
+</script>

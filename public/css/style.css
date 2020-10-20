@@ -21,3 +21,9 @@
   height: 20vh;
   width: 80vw;
 }
+.del_btn{
+  height: 20px;
+}
+.container{
+  overflow: auto;
+}
