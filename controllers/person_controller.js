@@ -1,5 +1,5 @@
 const PersonModel = require('../models/people');
-const { getPersonById, getAllPeople, deletePerson } = require('../utils/person_utils')
+const { getPersonById, getAllPeople, deletePerson, updatePerson } = require('../utils/person_utils')
 
 const get_people = async (req, res) => {
     // rendering page with all persons
@@ -64,7 +64,7 @@ const create_person = async (req,res) => {
 
 const remove_person = async (req,res) => {
     try {
-        const response = await deletePerson(req)
+        const person = await deletePerson(req)
         res.status(200).send("Person Deleted")
     
       } catch (error) {
@@ -74,8 +74,18 @@ const remove_person = async (req,res) => {
     }
 }
 
-const change_person = (req,res) => {
-    res.send('person updated')
+const change_person = async (req,res) => {
+    // res.send('person updated')
+    try {
+        const person = await updatePerson(req)
+        console.log(person)
+        res.status(200).send(Person)
+    
+      } catch (error) {
+        res.status(500).send({
+          error
+        })
+    }
 }
 
 module.exports = {

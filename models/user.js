@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define Post schema
+// Define User schema
 const User = new Schema({
     email:{
         type: String,
@@ -12,6 +12,7 @@ const User = new Schema({
         required: true
     }
 })
+
 User.plugin(require('mongoose-bcrypt'));
 
-module.exports = mongoose.model('User',User)
+module.exports = mongoose.model('User', User)
