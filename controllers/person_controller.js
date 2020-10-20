@@ -145,10 +145,13 @@ const add_event_form = async (req, res) => {
 const add_event = async (req, res) => {
     console.log("req.body", req.body)
     // Save the req.body data to variables
-    const { eventName, date, city, state, country } = req.body
+    const event = req.body
     
-    
-    // console.log(person)
+    const person = await getPersonById(req)
+    person.events.push(event)
+    person.save()
+    console.log(person)
+    res.redirect('/')
     
 }
 
