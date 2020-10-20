@@ -73,6 +73,7 @@ app.use(passport.session());
 
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.render('home')
