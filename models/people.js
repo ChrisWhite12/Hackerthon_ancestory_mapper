@@ -33,6 +33,10 @@ const Person = new Schema({
     children: [{
         type: String,
         required: false,
+    }],
+    events: [{
+        type: Object,
+        required: false,
     }]
 });
 
