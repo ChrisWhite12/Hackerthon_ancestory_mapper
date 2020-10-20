@@ -12,15 +12,16 @@
             <article class="media">
             <div class="media-content">
                 <div class="content">
-                <p>
-                    <strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</strong>
-                </p>
-                <p>
-                    <strong>Date of Birth:</strong> {{this.DOB}}
-                </p>
-                <p>
-                    <strong>Place of Birth:</strong> {{this.birthPlace}}
-                </p>
+                    <p>
+                        <strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</strong>
+                    </p>
+                    <p>
+                        <strong>Date of Birth:</strong> {{this.DOB}}
+                    </p>
+                    <p>
+                        <strong>Place of Birth:</strong> {{ birthCity}} {{ birthState }}, {{ birthCountry }}
+                    </p>
+                    <a href="/people/{{this.id}}/edit">Edit</a>
                 </div>
                 <nav class="level is-mobile">
                 <div class="level-left">

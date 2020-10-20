@@ -6,10 +6,12 @@
 <p><strong>Middle Name: </strong> {{ middleName }}</p>
 <p><strong>Last Name: </strong> {{ lastName }}</p>
 <p><strong>DOB: </strong>{{ DOB }}</p>
-<p><strong>Place of Birth: </strong>{{ birthPlace }}</p>
+<p><strong>Place of Birth: </strong>{{ birthCity}} {{ birthState }}, {{ birthCountry }}</p>
 
 {{!-- <p><form method="POST" action="/{{._id}}?_method=DELETE">
     <button type="submit">Delete</button>
 </form></p> --}}
+<a href="/people/{{id}}/edit">Edit</a>
+
 <a href="/people/all">Show All People</a>
 <a href="/user/logout">Logout</a>

@@ -1,40 +1,32 @@
-<h1> Person Page </h1>
+<h1> Add Event Page </h1>
 
 {{#if error}}
 <p>Error: {{error}}</p>
 {{/if}}
 
-<h2>Person Information</h2>
+<h2>Event Information</h2>
 
-<form method="post" action="/people">
+<form method="post" action="/people/{{id}}/add_event">
     <div>
-        <label>First Name</label>
-        <input type="text" name="firstName" />
+        <label>Event Description</label>
+        <input type="text" name="event"/>
+    </div>
+        <label>Event Date</label>
+        <input type="date" name="date"/>
     </div>
     <div>
-        <label>Middle Name</label>
-        <input type="text" name="middleName" />
-    </div>
-    <div>
-        <label>Last Name</label>
-        <input type="text" name="lastName" />
-    </div>
-    <div>
-        <label>Date of Birth</label>
-        <input type="date" name="DOB" />
-    </div>
-    <div>
-        <label>Town/City of Birth</label>
-        <input type="text" name="birthCity" />
+        <label>Town/City</label>
+        <input type="text" name="city"/>
     </div>
     <div>
         <label>State</label>
-        <input type="text" name="birthState" />
+        <input type="text" name="state" />
     </div>
     <div>
         <label>Country</label>
-        <input type="text" name="birthCountry" />
+        <input type="text" name="country"/>
     </div>
+
     {{!-- <h2>Family Information</h2>
 
     <div>
@@ -64,7 +56,13 @@
     {{!-- Submit Button--}}
     <div>
         <input type="submit" value="Submit" />
+        {{!-- <a href="/people/{{id}}">Back</a> --}}
+        {{!-- <form action="/people/{{id}}/delete?_method=DELETE" method="POST">
+            <button type="submit" class='button is-danger'>Delete</button>
+        </form> --}}
     </div>
 </form>
+
+{{!-- <a class="button is-link is-outlined" href="/people/{{id}}/add_child">Add Child</a> --}}
 
 <a href="/user/logout">Logout</a>

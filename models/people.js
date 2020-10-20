@@ -18,10 +18,22 @@ const Person = new Schema({
         type: Date,
         required: true
     },
-    birthPlace: {
+    birthCity: {
         type: String,
         required: true
     },
+    birthState: {
+        type: String,
+        required: true
+    },
+    birthCountry: {
+        type: String,
+        required: true
+    },
+    children: [{
+        type: String,
+        required: false,
+    }]
 });
 
 module.exports = mongoose.model('Person', Person);

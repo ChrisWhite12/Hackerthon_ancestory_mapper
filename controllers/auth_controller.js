@@ -21,7 +21,7 @@ const registerCreate = (req, res) => {
                 next(err)
             }
             else{
-                res.redirect('/people/')
+                res.redirect('/people/all')
             }
 
         })
