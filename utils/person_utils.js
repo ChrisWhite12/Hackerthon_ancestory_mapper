@@ -14,12 +14,17 @@ const deletePerson = function(req) {
     return PersonModel.deleteOne({ "_id": personId })
 }
 
-const editPerson = function(req) {
-    
+const updatePerson = function(req) {
+    const personId = req.params.id
+    console.log(personId)
+    const updatedInfo = req.body
+    console.log(updatedInfo)
+    return PersonModel.findByIdAndUpdate(personId, updatedInfo, { new: true })
 }
 
 module.exports = {
     getPersonById,
     getAllPeople,
-    deletePerson
+    deletePerson,
+    updatePerson
 }

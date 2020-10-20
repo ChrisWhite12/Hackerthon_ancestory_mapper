@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {registerCreate, registerNew, logOut, loginCreate, loginNew} = require('../controllers/auth_controller')
-const {authRedirect} = require("../middleware/auth_mw")
+const { registerCreate, registerNew, logOut, loginCreate, loginNew } = require('../controllers/auth_controller')
+const { authRedirect } = require("../middleware/auth_mw")
 
 router.get('/register', authRedirect ,registerNew)
 
