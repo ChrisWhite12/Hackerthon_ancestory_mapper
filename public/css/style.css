@@ -15,6 +15,7 @@
   border: 2px red solid;
   height: 80vh;
   width: 80vw;
+  overflow: auto;
 }
 #info_box{
   height: 20vh;
