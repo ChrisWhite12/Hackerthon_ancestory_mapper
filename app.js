@@ -68,7 +68,7 @@ app.use(passport.session());
 
 // app.engine('handlebars', exphbs())
 // app.set('view engine', 'handlebars')
-
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

@@ -1,9 +1,9 @@
+<h1>Map Page</h1>
 <div class="main-sec">
-    <h1>Map Page</h1>
     <div id="map" style="height: 70vh; width: 80vw"></div>
     <div>
         <input type="button" id="play_btn" value="Play" style="width: 100px;">
-        <input type="range" id="year_select" style="width: 50vw;" min="1800" max="2020">
+        <input type="range" id="year_select" style="width: 50vw;" min= "0"; max="1">
     </div>
 </div>
 
@@ -36,6 +36,22 @@
     year_select.addEventListener('change', () => {
         console.log(year_select["value"])
     })
+
+    let test_data = {
+        "Fname": "chris",
+        "Lname": "white",
+        "events": [{"desc":"event 1", "date": 1991},{"desc":"event 2", "date": 1998},{"desc":"event 3", "date": 2000},{"desc":"event 3", "date": 2020}]
+    }
+
+
+    year_select["max"] = test_data["events"].length 
+    
+    test_data["events"].forEach(el => {
+        console.log(test_data["events"].length)
+        console.log(el["date"])
+    })
+
+    
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9k8U_KzwSGC4DbQWJKoH51YMtvKZrR6U&callback=initMap&libraries=&v=weekly" ></script>
