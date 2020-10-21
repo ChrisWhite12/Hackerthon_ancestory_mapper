@@ -38,7 +38,10 @@
                 </nav>
             </div>
             <div class="media-right">
-                <button class="del_btn" data-per_id={{this.id}}>X</button>
+                <form method="POST" action="{{this.id}}/delete?_method=DELETE" >
+                    <input type="submit" class="del_btn" data-per_id={{this.id}} value="X">
+                </form>
+                
             </div>
             </article>
         </div>
@@ -50,8 +53,6 @@
 
 <script>
     const map_btn = document.getElementById("map_btn")
-    const del_btn = document.getElementsByClassName("del_btn")
-    console.log(del_btn)
 
     map_btn.addEventListener('click', () => {
         let ids_out = []
@@ -64,14 +65,7 @@
             }
         })
         console.log(ids_out)
+        window.location.href = `http://localhost:3000/pages/map?ids=${JSON.stringify(ids_out)}`
     })
-
-    for(let ind = 0; ind < del_btn.length; ind ++){
-        del_btn[ind].addEventListener('click', (event) => {
-            console.log(event["target"]["dataset"]["per_id"])
-        })  
-    }
-
-
 
 </script>

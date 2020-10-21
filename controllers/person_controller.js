@@ -75,8 +75,11 @@ const create_person = async (req,res) => {
 const remove_person = async (req,res) => {
     try {
         const person = await deletePerson(req)
-        res.status(200).send("Person Deleted")
-    
+        res.status(200)
+        res.send("Person Deleted")
+        // res.render()
+        // res.redirect('people/all')
+        // 
       } catch (error) {
         res.status(500).send({
           error

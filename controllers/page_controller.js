@@ -1,95 +1,18 @@
+const PersonModel = require('../models/people');
 
 const display_tree = (req,res) => {
-    // res.send('tree page')
-    // let test_data = [
-    //     {
-    //         'id':1,
-    //         'Fname': 'Robert',
-    //         'Lname': 'Smith',
-    //         'Parents': [],
-    //         'Children': [2,3,4],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    //     {
-    //         'id':2,
-    //         'Fname': 'Chris',
-    //         'Lname': 'Smith',
-    //         'Parents': [1],
-    //         'Children': [],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    //     {
-    //         'id':3,
-    //         'Fname': 'Mary',
-    //         'Lname': 'Smith',
-    //         'Parents': [1],
-    //         'Children': [5,6],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    //     {
-    //         'id':4,
-    //         'Fname': 'Tyler',
-    //         'Lname': 'Smith',
-    //         'Parents': [1],
-    //         'Children': [],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    //     {
-    //         'id':5,
-    //         'Fname': 'Emily',
-    //         'Lname': 'Green',
-    //         'Parents': [3],
-    //         'Children': [],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    //     {
-    //         'id':6,
-    //         'Fname': 'Mark',
-    //         'Lname': 'Green',
-    //         'Parents': [3],
-    //         'Children': [],
-    //         'Partners': [],
-    //         'Events': []
-    //     },
-    // ]
-
-    // treeitems = 0;
-    // tree_struc = [`<li>${test_data[0]["Fname"]}</li>`]
-    // test_data.forEach(el => {
-        
-    //     if(el["Children"].length >= 1){
-    //         tree_struc.push('<ul>')
-    //         for (let child = 0; child < el["Children"].length; child++) {
-    //             let find_child = test_data.find( el2 => el2["id"] == el["Children"][child])
-    //             tree_struc.push(`<li>${find_child["Fname"]}</li>`)
-    //         }
-    //         tree_struc.push('</ul>')
-    //     }
-    // })
-    // tree_template = tree_struc.join('')
-    // console.log(tree_template)
-    // res.render('tree',{tree_template})
+    
     res.render('tree')
-    // treeitems = 0;
-    // test_data.forEach(el => {
-    //     if(treeitems == 0){
-    //         let treeA = document.getElementById('tree-area')
-    //         console.log(treeA)
-    //     }
-    //     else{
-
-    //     }
-    // })
 }
 
 const display_map = (req,res) => {
-    
+    event_arr = []
     // res.send('map page')
+    const ids = JSON.parse(req.query.ids)
+    ids.forEach(el => {
+        console.log(el)
+        getEventInfo(el)
+    });
 
     // Initialize and add the map
     function initMap() {
@@ -104,7 +27,16 @@ const display_map = (req,res) => {
     }
     //render the map page here
     
-    res.render('map')
+    res.render('map', event_arr)
+}
+
+let getEventInfo = async (id) => {
+    per_sel = await PersonModel.findById(id)
+    console.log(per_sel)
+    per_sel["events"].forEach(el2 =>
+        event_arr.push([per_sel["firstName"] + ' ' + per_sel["lastName"],el2])
+    )
+    console.log(event_arr)
 }
 
 
