@@ -1,70 +1,49 @@
-<h1> Person Page </h1>
-
 {{#if error}}
 <p>Error: {{error}}</p>
 {{/if}}
 
-<h2>Person Information</h2>
-
-<form method="post" action="/people">
-    <div>
-        <label>First Name</label>
-        <input type="text" name="firstName" />
+<section class="hero is-fullheight is-light is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Add your information!
+      </h1>
+      <section class='form'>
+        <form method="post" action="/people">
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" name="firstName" />
+            </div class="field">
+            <div class="field">
+                <label>Middle Name</label>
+                <input type="text" name="middleName" />
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <input type="text" name="lastName" />
+            </div>
+            <div class="field">
+                <label>Date of Birth</label>
+                <input type="date" name="DOB" />
+            </div>
+            <div class="field">
+                <label>Town/City of Birth</label>
+                <input type="text" name="birthCity" />
+            </div>
+            <div class="field">
+                <label>State</label>
+                <input type="text" name="birthState" />
+            </div>
+            <div class="field">
+                <label>Country</label>
+                <input type="text" name="birthCountry" />
+            </div>
+            {{!-- Submit Button--}}
+            <div>
+                <input type="submit" value="Submit" class="button is-link is-outlined"/>
+            </div>
+            </form>
+        </section>
     </div>
-    <div>
-        <label>Middle Name</label>
-        <input type="text" name="middleName" />
-    </div>
-    <div>
-        <label>Last Name</label>
-        <input type="text" name="lastName" />
-    </div>
-    <div>
-        <label>Date of Birth</label>
-        <input type="date" name="DOB" />
-    </div>
-    <div>
-        <label>Town/City of Birth</label>
-        <input type="text" name="birthCity" />
-    </div>
-    <div>
-        <label>State</label>
-        <input type="text" name="birthState" />
-    </div>
-    <div>
-        <label>Country</label>
-        <input type="text" name="birthCountry" />
-    </div>
-    {{!-- <h2>Family Information</h2>
-
-    <div>
-        <label>Children</label>
-        <input type="text" name="children" />
-    </div>
-    <div>
-        <label>Partners</label>
-        <input type="text" name="partners" />
-    </div>
-
-    <h2>Events</h2>
-
-    <div>
-        <label>Event</label>
-        <input type="text" name="event" />
-    </div>
-    <div>
-        <label>Date</label>
-        <input type="date" name="eventDate" />
-    </div>
-    <div>
-        <label>Location</label>
-        <input type="text" name="location" />
-    </div> --}}
-
-    {{!-- Submit Button--}}
-    <div>
-        <input type="submit" value="Submit" />
-    </div>
-</form>
-
-<a href="/user/logout">Logout</a>
+  </div>
+</section>

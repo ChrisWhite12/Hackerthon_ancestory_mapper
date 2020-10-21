@@ -1,78 +1,55 @@
-<h1> Edit Person Page </h1>
-
 {{#if error}}
 <p>Error: {{error}}</p>
 {{/if}}
 
-<h2>Edit Person Information</h2>
+<section class="hero is-fullheight is-light is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Edit your information!
+      </h1>
+      <section class='form'>
+        <form method="post" action="/people/{{ id }}/edit?_method=PUT">
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" name="firstName" value="{{ firstName }}"/>
+            </div class="field">
+            <div class="field">
+                <label>Middle Name</label>
+                <input type="text" name="middleName" value="{{ middleName }}"/>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <input type="text" name="lastName" value="{{ lastName }}"/>
+            </div>
+            <div class="field">
+                <label>Date of Birth</label>
+                <input type="date" name="DOB" value="{{ DOB }}"/>
+            </div>
+            <div class="field">
+                <label>Town/City of Birth</label>
+                <input type="text" name="birthCity" value="{{ birthCity }}"/>
+            </div>
+            <div class="field">
+                <label>State</label>
+                <input type="text" name="birthState" value="{{ birthState }}"/>
+            </div>
+            <div class="field">
+                <label>Country</label>
+                <input type="text" name="birthCountry" value="{{ birthCountry }}"/>
+            </div>
+            {{!-- Submit Button--}}
+            <div>
+                <input type="submit" value="Update" class="button is-link is-outlined"/>
+            </div>
+            </form>
+        </section>
+        <div class="edit-buttons">
+            <a href="/people/all" class="button is-dark">Back</a>
+            <a class="button is-link" href="/people/{{id}}/add_child">Add Child</a>
+            <a class="button is-danger" href="/people/{{id}}/add_event">Add Event</a>
+        </div>
+    </div>
+  </div>
+</section>
 
-<form method="post" action="/people/{{ id }}/edit?_method=PUT">
-    <div>
-        <label>First Name</label>
-        <input type="text" name="firstName" value="{{ firstName }}" />
-    </div>
-    <div>
-        <label>Middle Name</label>
-        <input type="text" name="middleName" value="{{ middleName }}"/>
-    </div>
-    <div>
-        <label>Last Name</label>
-        <input type="text" name="lastName" value="{{ lastName }}"/>
-    </div>
-    <div>
-        <label>Date of Birth</label>
-        <input type="date" name="DOB" value="{{ DOB }}"/>
-    </div>
-    <div>
-        <label>Town/City of Birth</label>
-        <input type="text" name="birthCity" value="{{ birthCity }}"/>
-    </div>
-    <div>
-        <label>State</label>
-        <input type="text" name="birthState" value="{{ birthState }}" />
-    </div>
-    <div>
-        <label>Country</label>
-        <input type="text" name="birthCountry" value="{{ birthCountry }}"/>
-    </div>
-
-    {{!-- <h2>Family Information</h2>
-
-    <div>
-        <label>Children</label>
-        <input type="text" name="children" />
-    </div>
-    <div>
-        <label>Partners</label>
-        <input type="text" name="partners" />
-    </div>
-
-    <h2>Events</h2>
-
-    <div>
-        <label>Event</label>
-        <input type="text" name="event" />
-    </div>
-    <div>
-        <label>Date</label>
-        <input type="date" name="eventDate" />
-    </div>
-    <div>
-        <label>Location</label>
-        <input type="text" name="location" />
-    </div> --}}
-
-    {{!-- Submit Button--}}
-    <div>
-        <input type="submit" value="Update" />
-        <a href="/people/{{id}}">Back</a>
-        {{!-- <form action="/people/{{id}}/delete?_method=DELETE" method="POST">
-            <button type="submit" class='button is-danger'>Delete</button>
-        </form> --}}
-    </div>
-</form>
-
-<a class="button is-link is-outlined" href="/people/{{id}}/add_child">Add Child</a>
-<a class="button is-warning is-outlined" href="/people/{{id}}/add_event">Add Event</a>
-
-<a href="/user/logout">Logout</a>
