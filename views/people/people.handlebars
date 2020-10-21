@@ -48,3 +48,33 @@
         </div>
     </div>
 </div>
+
+<button id="map_btn">Go To Map</button>
+
+<script>
+    const map_btn = document.getElementById("map_btn")
+    const del_btn = document.getElementsByClassName("del_btn")
+    console.log(del_btn)
+
+    map_btn.addEventListener('click', () => {
+        let ids_out = []
+        let check_arr = document.querySelectorAll(".check_person")
+        console.log(check_arr)
+        check_arr.forEach(el => {
+            if(el["checked"] == true){
+                //console.log("checked == true")
+                ids_out.push(el["dataset"]["per_id"])
+            }
+        })
+        console.log(ids_out)
+    })
+
+    for(let ind = 0; ind < del_btn.length; ind ++){
+        del_btn[ind].addEventListener('click', (event) => {
+            console.log(event["target"]["dataset"]["per_id"])
+        })  
+    }
+
+
+
+</script>

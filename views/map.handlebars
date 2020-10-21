@@ -8,6 +8,7 @@
       <p id="year_info"></p>
       <p id="desc_info"></p>
       <p id="locat_info"></p>
+      <p id="name_info"></p>
     </div>
 </div>
 
@@ -17,6 +18,7 @@
   const year_info = document.getElementById("year_info")
   const desc_info = document.getElementById("desc_info")
   const locat_info = document.getElementById("locat_info")
+  const name_info = document.getElementById("name_info")
 
   //write function to get data from params
   let test_data = {
@@ -24,6 +26,8 @@
       "Lname": "white",
       "events": [{"desc":"event 1", "date": 1991, "location": "Brisbane, Australia"},{"desc":"event 2", "date": 1998, "location": "Rome, Italy"},{"desc":"event 3", "date": 2000, "location": "New York, USA"},{"desc":"event 3", "date": 2020, "location": "London, UK"}]
   }
+  //write function to get all events from number of people and sort them
+
 
   function initMap() {
       // The location of Uluru
@@ -34,6 +38,7 @@
           zoom: 4,
           center: uluru,
       });
+      console.log(map)
   }
 
   play_btn.addEventListener('click', el => {
@@ -58,6 +63,7 @@
     year_info.innerHTML = test_data["events"][ind]["date"]
     desc_info.innerHTML = test_data["events"][ind]["desc"]
     locat_info.innerHTML = test_data["events"][ind]["location"]
+    name_info.innerHTML = `${test_data["Fname"]} ${test_data["Lname"]}`
     //console.log(year_select["value"])
     //console.log(test_data["events"][ind]["location"])
     geocodeAddress(geocoder,map,test_data["events"][ind]["location"])

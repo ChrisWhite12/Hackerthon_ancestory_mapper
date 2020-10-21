@@ -5,43 +5,97 @@
 
 <script>
     let treeA = document.getElementById('tree-area')
-    let tree_data = [[[1,2],[3,4,5,6,7]], [[4,8],[9,10]], [[7,11],[12,13,14]], [[10,15],[16,17]]];
-    let tree_edge = [[0,1],[0,2],[1,3]]
-
+    let tree_data = [[[1,2],[3,4,5,7,20,21]], [[4,8],[9,10]], [[7,11],[12,13,14]], [[10,15],[16,17]]];
+    let tree_edge = [[],[0,1],[0,2],[1,3]]
+    let grid_pos = {
+        "1": [4,1],
+        "2": [5,1]
+    }
     let grid_x = 8;
     let grid_y = 8;
     
     //render parents
     let grid_item1 = document.createElement("div")
     treeA.appendChild(grid_item1)
-    console.log(grid_item1)
+    //console.log(grid_item1)
     grid_item1["style"]["grid-column"] = "4/5";
     grid_item1["style"]["grid-row"] = "1/2";
+    grid_item1["style"]["border"] = "2px solid black";
+    grid_item1["style"]["margin"] = "5px";
     grid_text = document.createTextNode(tree_data[0][0][0])
-    console.log(grid_text)
+    //console.log(grid_text)
     grid_item1.appendChild(grid_text)
 
     let grid_item2 = document.createElement("div")
     treeA.appendChild(grid_item2)
-    console.log(grid_item2)
+    //console.log(grid_item2)
     grid_item2["style"]["grid-column"] = "5/6";
     grid_item2["style"]["grid-row"] = "1/2";
+    grid_item2["style"]["border"] = "2px solid black";
+    grid_item2["style"]["margin"] = "5px";
     grid_text = document.createTextNode(tree_data[0][0][1])
-    console.log(grid_text)
+    //console.log(grid_text)
     grid_item2.appendChild(grid_text)
 
-    child_ind = 0 
+    console.log(`child length - ${tree_data[0][1].length}`)
+    let midpoint = Math.ceil(tree_data[0][1].length / 2)
+    let parent_midpoint = grid_pos["1"][0]
+    console.log(midpoint)
+    console.log(parent_midpoint)
+
+    child_ind_grid = (-Math.ceil(tree_data[0][1].length / 2) + parent_midpoint+ 1)
+    child_ind = 0
+    console.log(`grid_pos ${child_ind_grid}`)
+
     tree_data[0][1].forEach(el2 => {
-        console.log(el2)
+        //console.log(el2)
         grid_item = document.createElement("div")
         treeA.appendChild(grid_item)
-        console.log(grid_item)
-        grid_item["style"]["grid-column"] = `${child_ind+1}/${child_ind+2}`;
+        //console.log(grid_item)
+        grid_item["style"]["grid-column"] = `${child_ind_grid}/${child_ind_grid+1}`;
         grid_item["style"]["grid-row"] = '2/3';
+        grid_item["style"]["border"] = "2px solid black";
+        grid_item["style"]["margin"] = "5px";
         grid_text = document.createTextNode(tree_data[0][1][child_ind])
-        console.log(grid_text)
+        //console.log(grid_text)
         grid_item.appendChild(grid_text)
+        grid_pos[tree_data[0][1][child_ind]] = [child_ind_grid+1,2]
+
+        console.log(`grid_pos ${child_ind_grid}`)
         child_ind += 1
+        child_ind_grid +=1
     })
+    console.log(grid_pos)
+
+    //for the next parent -----------------------------------------------
+    //create function to space the people evenly 
+    let next_par = tree_data[1][0][0]
+    console.log(next_par)
+    console.log(`gp - ${grid_pos[next_par][0]}`)
+    parent_midpoint = grid_pos[next_par][0]
+
+    child_ind_grid = (-Math.ceil(tree_data[1][1].length / 2) + parent_midpoint+ 1)
+    child_ind = 0
+    console.log(`grid_pos ${child_ind_grid}`)
+
+    tree_data[1][1].forEach(el2 => {
+        //console.log(el2)
+        grid_item = document.createElement("div")
+        treeA.appendChild(grid_item)
+        //console.log(grid_item)
+        grid_item["style"]["grid-column"] = `${child_ind_grid}/${child_ind_grid+1}`;
+        grid_item["style"]["grid-row"] = '3/4';
+        grid_item["style"]["border"] = "2px solid black";
+        grid_item["style"]["margin"] = "5px";
+        grid_text = document.createTextNode(tree_data[1][1][child_ind])
+        //console.log(grid_text)
+        grid_item.appendChild(grid_text)
+        grid_pos[tree_data[1][1][child_ind]] = [child_ind_grid+1,2]
+
+        console.log(`grid_pos ${child_ind_grid}`)
+        child_ind += 1
+        child_ind_grid +=1
+    })
+    console.log(grid_pos)
 
 </script>

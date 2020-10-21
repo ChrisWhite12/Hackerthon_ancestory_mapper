@@ -43,7 +43,10 @@ const create_person = async (req,res) => {
     // console.log("req.body", req.body)
     // Save the req.body data to variables
     const { firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry } = req.body
-    let person = await PersonModel.create({ firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry })
+    let person = await PersonModel.create({ 
+        firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry,
+        events: [{"desc": "DOB", "location": `${birthCity}, ${birthCountry}`, "date": DOB}]
+    })
     // console.log(person)
     
     res.redirect(`people/${person._id}`)
@@ -96,13 +99,17 @@ const add_child = (req, res) => {
 const add_children = async (req, res) => {
     try {
         const { firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry } = req.body
-        let child = await PersonModel.create({ firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry })
+        let child = await PersonModel.create({ 
+            firstName, middleName, lastName, DOB, birthCity, birthState, birthCountry, 
+            events: [{"desc": "DOB", "location": `${birthCity}, ${birthCountry}`, "date": DOB}]
+        })
         const childId = child.id
 
         const parent = await getPersonById(req)
         const parentId = parent.id
 
         parent.children.push(childId);
+        parent.events.push({"desc": "Birth of Child", "location": `${birthCity}, ${birthCountry}`, "date": DOB})
         parent.save();
         console.log(parent)
 

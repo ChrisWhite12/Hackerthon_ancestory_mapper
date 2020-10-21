@@ -15,6 +15,7 @@
   border: 2px red solid;
   height: 80vh;
   width: 80vw;
+  overflow: auto;
 }
 #info_box{
   height: 20vh;
@@ -50,4 +51,11 @@
   background-image: url('/images/map2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.del_btn{
+  height: 20px;
+}
+.container{
+  overflow: auto;
 }
