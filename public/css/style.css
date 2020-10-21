@@ -20,3 +20,34 @@
   height: 20vh;
   width: 80vw;
 }
+
+.columns {
+  flex-wrap: wrap;
+}
+
+.edit-buttons {
+  margin: 2rem;
+}
+
+.hero.is-fullheight.is-dark.is-bold.home {
+  background-image: url('/images/map.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.people {
+  background-image: url('/images/map.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.container.is-fluid {
+  padding-top: 2rem;
+}
+
+.hero.is-fullheight.is-light.is-bold {
+  background-image: url('/images/map2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

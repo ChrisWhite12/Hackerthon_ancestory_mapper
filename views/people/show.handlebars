@@ -1,17 +1,13 @@
-<h1> Person Show </h1>
-
-<h2>You have added the following person:</h2>
-
-<p><strong>First Name: </strong> {{ firstName }}</p>
-<p><strong>Middle Name: </strong> {{ middleName }}</p>
-<p><strong>Last Name: </strong> {{ lastName }}</p>
-<p><strong>DOB: </strong>{{ DOB }}</p>
-<p><strong>Place of Birth: </strong>{{ birthCity}} {{ birthState }}, {{ birthCountry }}</p>
-
-{{!-- <p><form method="POST" action="/{{._id}}?_method=DELETE">
-    <button type="submit">Delete</button>
-</form></p> --}}
-<a href="/people/{{id}}/edit">Edit</a>
-
-<a href="/people/all">Show All People</a>
-<a href="/user/logout">Logout</a>
+<section class="hero is-fullheight is-light is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+                You have added the following person:
+            </h1>
+            <p><strong>{{ firstName }} {{ middleName }} {{ lastName }}</strong></p>
+            <p><strong>DOB: </strong>{{ DOB }}</p>
+            <p><strong>Place of Birth: </strong>{{ birthCity}} {{ birthState }}, {{ birthCountry }}</p>
+            <a href="/people/{{id}}/edit" class="button is-link is-outlined">Edit</a>
+        </div>
+    </div>
+</section>

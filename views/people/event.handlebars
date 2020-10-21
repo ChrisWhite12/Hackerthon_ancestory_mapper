@@ -1,68 +1,42 @@
-<h1> Add Event Page </h1>
-
 {{#if error}}
 <p>Error: {{error}}</p>
 {{/if}}
 
-<h2>Event Information</h2>
-
-<form method="post" action="/people/{{id}}/add_event">
-    <div>
-        <label>Event Description</label>
-        <input type="text" name="event"/>
+<section class="hero is-fullheight is-light is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Add Event Information!
+      </h1>
+      <section class='form'>
+        <form method="post" action="/people/{{id}}/add_event">
+            <div class="field">
+                <label>Event Description</label>
+                <input type="text" name="event" />
+            </div class="field">
+            <div class="field">
+                <label>Event Date</label>
+                <input type="date" name="date" />
+            </div>
+            <div class="field">
+                <label>Town/City</label>
+                <input type="text" name="city" />
+            </div>
+            <div class="field">
+                <label>State</label>
+                <input type="text" name="state" />
+            </div>
+            <div class="field">
+                <label>Country</label>
+                <input type="text" name="country" />
+            </div>
+            {{!-- Submit Button--}}
+            <div>
+                <button class="button is-dark" href="people/all">Back</button>
+                <input type="submit" value="Submit" class="button is-link is-outlined"/>
+            </div>
+            </form>
+        </section>
     </div>
-        <label>Event Date</label>
-        <input type="date" name="date"/>
-    </div>
-    <div>
-        <label>Town/City</label>
-        <input type="text" name="city"/>
-    </div>
-    <div>
-        <label>State</label>
-        <input type="text" name="state" />
-    </div>
-    <div>
-        <label>Country</label>
-        <input type="text" name="country"/>
-    </div>
-
-    {{!-- <h2>Family Information</h2>
-
-    <div>
-        <label>Children</label>
-        <input type="text" name="children" />
-    </div>
-    <div>
-        <label>Partners</label>
-        <input type="text" name="partners" />
-    </div>
-
-    <h2>Events</h2>
-
-    <div>
-        <label>Event</label>
-        <input type="text" name="event" />
-    </div>
-    <div>
-        <label>Date</label>
-        <input type="date" name="eventDate" />
-    </div>
-    <div>
-        <label>Location</label>
-        <input type="text" name="location" />
-    </div> --}}
-
-    {{!-- Submit Button--}}
-    <div>
-        <input type="submit" value="Submit" />
-        {{!-- <a href="/people/{{id}}">Back</a> --}}
-        {{!-- <form action="/people/{{id}}/delete?_method=DELETE" method="POST">
-            <button type="submit" class='button is-danger'>Delete</button>
-        </form> --}}
-    </div>
-</form>
-
-{{!-- <a class="button is-link is-outlined" href="/people/{{id}}/add_child">Add Child</a> --}}
-
-<a href="/user/logout">Logout</a>
+  </div>
+</section>
