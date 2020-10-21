@@ -6,12 +6,16 @@ const display_tree = (req,res) => {
 }
 
 const display_map = (req,res) => {
-    event_arr = []
+    result_arr = []
     // res.send('map page')
     const ids = JSON.parse(req.query.ids)
+
     ids.forEach(el => {
-        console.log(el)
+        // console.log(el)
+        // result_arr.push(getEventInfo(el))
         getEventInfo(el)
+            .then(x => result_arr.push(x))
+            .catch()
     });
 
     // Initialize and add the map
@@ -26,17 +30,19 @@ const display_map = (req,res) => {
         });
     }
     //render the map page here
-    
-    res.render('map', event_arr)
+    // Promise.allSettled
+    res.render('map')
 }
 
 let getEventInfo = async (id) => {
     per_sel = await PersonModel.findById(id)
-    console.log(per_sel)
+    // console.log(per_sel)
+    event_arr = []
     per_sel["events"].forEach(el2 =>
         event_arr.push([per_sel["firstName"] + ' ' + per_sel["lastName"],el2])
     )
-    console.log(event_arr)
+    // console.log(event_arr)
+    return event_arr
 }
 
 

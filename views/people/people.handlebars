@@ -1,55 +1,56 @@
-<h1>All People</h1>
-
-<div class="columns">
+<div class="people">
+    <div class="container is-fluid">
+    {{!-- 
     {{#each people}}
-    <div class="column is-one-quarter">
-        <div class="box">
-            <article class="media">
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</strong>
-                    </p>
-                    <p>
-                        <strong>Date of Birth:</strong> {{this.DOB}}
-                    </p>
-                    <p>
-                        <strong>Place of Birth:</strong> {{ birthCity}} {{ birthState }}, {{ birthCountry }}
-                    </p>
-                    <a href="/people/{{this.id}}/edit">Edit</a>
-                    <div>
-                        <input type="checkbox" class="check_person" data-per_id={{this.id}}>
-                        <label for="check_person">Select</label>
+    <p><strong>Person: </strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</p>
+    <p><strong>Date of Birth: </strong>{{ this.DOB }}</p>
+    <p><strong>Place of Birth: </strong>{{ this.birthPlace }}</p>
+    {{/each}} --}}
+        <div class="columns">
+            {{#each people}}
+            <div class="column is-one-quarter">
+                <div class="box">
+                    <article class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>{{ this.firstName }} {{ this.middleName }} {{ this.lastName }}</strong>
+                            </p>
+                            <p>
+                                <strong>Date of Birth:</strong> {{this.DOB}}
+                            </p>
+                            <p>
+                                <strong>Place of Birth:</strong> {{ birthCity}} {{ birthState }}, {{ birthCountry }}
+                            </p>
+                            <input type="checkbox" class="check_person" data-per_id={{this.id}}>
+                            {{!-- <a href="/people/{{this.id}}/edit">Edit</a> --}}
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <a class="level-item">
+                                    <a class="icon is-small" href="/people/{{this.id}}/edit"><i class="fas fa-user-edit"></i></a>
+                                </a>
+                                {{!-- <a class="level-item">
+                                <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+                                </a>
+                                <a class="level-item">
+                                <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                                </a> --}}
+                            </div>
+                        </nav>
                     </div>
-                    
+                    <div class="media-right">
+                        <button class="delete"></button>
+                    </div>
+                    </article>
                 </div>
-                <nav class="level is-mobile">
-                <div class="level-left">
-                    <a class="level-item">
-                    <span class="icon is-small"><i class="fas fa-reply"></i></span>
-                    </a>
-                    <a class="level-item">
-                    <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-                    </a>
-                    <a class="level-item">
-                    <span class="icon is-small"><i class="fas fa-heart"></i></span>
-                    </a>
-                </div>
-                </nav>
             </div>
-            <div class="media-right">
-                <form method="POST" action="{{this.id}}/delete?_method=DELETE" >
-                    <input type="submit" class="del_btn" data-per_id={{this.id}} value="X">
-                </form>
-                
-            </div>
-            </article>
+            {{/each}}
         </div>
     </div>
-    {{/each}}
 </div>
+
 <button id="map_btn">Go To Map</button>
-<a href="/user/logout">Logout</a>
 
 <script>
     const map_btn = document.getElementById("map_btn")

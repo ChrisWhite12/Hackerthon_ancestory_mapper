@@ -4,8 +4,8 @@ const {
     getAllPeople, 
     deletePerson, 
     updatePerson,
-    addChild,
-    addChildToPerson
+    // addChild,
+    // addChildToPerson
 } = require('../utils/person_utils')
 
 const get_people = async (req, res) => {
@@ -20,16 +20,6 @@ const get_people = async (req, res) => {
             error
         })
     }
-
-    // getAllPeople(req).exec((err, people) => {
-    //     if (err) {
-    //         res.status(400)
-    //         return res.send("People not found")
-    //     } else {
-    //         res.render('people/show', people)
-    //     }
-    // })
-    // res.send("here")
 }
 
 const get_persons = (req,res) => {
@@ -47,16 +37,6 @@ const get_person = async (req, res) => {
             error
         })
     }
-
-    // getPersonById(req).exec((err, person) => {
-    //     if (err) {
-    //         res.status(400)
-    //         return res.send("Person not found")
-    //     } else {
-    //         res.render('people/show', person)
-    //     }
-    // })
-    // render page with id created by create_person
 }
 
 const create_person = async (req,res) => {
@@ -97,7 +77,6 @@ const edit_person = async (req, res) => {
             error
         })
     }
-    // res.render('people/person')
 }
 
 const update_person = async (req,res) => {
@@ -132,7 +111,6 @@ const add_children = async (req, res) => {
         const parent = await getPersonById(req)
         const parentId = parent.id
 
-        // const updatedParent = await PersonModel.findByIdAndUpdate(parentId, {$push: {"children": [childId]}})
         parent.children.push(childId);
         parent.events.push({"desc": "Birth of Child", "location": `${birthCity}, ${birthCountry}`, "date": DOB})
         parent.save();
